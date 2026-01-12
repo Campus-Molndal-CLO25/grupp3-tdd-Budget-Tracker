@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "develop", "test"]
+  pull_request:
+    branches: [ "develop"]
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    name: Build & Test (.NET)
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Checkout din kod
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2) Installera .NET SDK (anpassa version vid behov: 9.0.x)
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      # 3) Cache NuGet för snabbare builds
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      # 4) Restore
+      - name: Restore
+        run: dotnet restore BudgetTracker.sln
+
+      # 5) Build (utan restore igen)
+      - name: Build
+        run: dotnet build BudgetTracker.sln --configuration Release --no-restore
+
+      # 6) Test + TRX + Coverage (Cobertura)
+      #    OBS: Kräver paketet coverlet.collector i testprojektet.
+      - name: Test
+        run: |
+          dotnet test BudgetTracker.sln \
+            --configuration Release \
+            --no-build \
+            --logger "trx;LogFileName=test-results.trx" \
+            --collect:"XPlat Code Coverage"
+
+      # 7) Ladda upp testresultat som artifact
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: "**/TestResults/*.trx"
+
+      # 8) Ladda upp coverage som artifact (Cobertura + raw)
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: "**/TestResults/**/coverage.cobertura.xml"
