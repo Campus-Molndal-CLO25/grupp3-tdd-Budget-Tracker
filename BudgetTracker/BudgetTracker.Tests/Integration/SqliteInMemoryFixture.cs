@@ -1,0 +1,54 @@
+using System.Data.Common;
+using BudgetTracker.Core.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Xunit;
+
+namespace BudgetTracker.Tests.Integration;
+
+public sealed class SqliteInMemoryFixture : IAsyncLifetime
+{
+    private readonly SqliteConnection _connection = new("DataSource=:memory:");
+    public WebApplicationFactory<global::Program> Factory { get; private set; } = null!;
+
+    public async Task InitializeAsync()
+    {
+        await _connection.OpenAsync();
+        Factory = new ApiWebApplicationFactory(_connection);
+    }
+
+    public Task DisposeAsync()
+    {
+        Factory.Dispose();
+        _connection.Dispose();
+        return Task.CompletedTask;
+    }
+
+    private sealed class ApiWebApplicationFactory : WebApplicationFactory<global::Program>
+    {
+        private readonly DbConnection _connection;
+
+        public ApiWebApplicationFactory(DbConnection connection)
+        {
+            _connection = connection;
+        }
+
+        protected override void ConfigureWebHost(IWebHostBuilder builder)
+        {
+            builder.ConfigureServices(services =>
+            {
+                services.RemoveAll<DbContextOptions<BudgetTrackerDbContext>>();
+                services.AddDbContext<BudgetTrackerDbContext>(options => options.UseSqlite(_connection));
+
+                var sp = services.BuildServiceProvider();
+                using var scope = sp.CreateScope();
+                var db = scope.ServiceProvider.GetRequiredService<BudgetTrackerDbContext>();
+                db.Database.EnsureCreated();
+            });
+        }
+    }
+}
