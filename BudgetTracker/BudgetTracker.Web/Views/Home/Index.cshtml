@@ -1,0 +1,155 @@
+﻿@model BudgetTracker.Web.Models.HomeDashboardViewModel
+
+<section class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">Personal Budget </p>
+        <h1>Track cash flow with clarity, not clutter.</h1>
+        <p class="lede">Create accounts, visualize balances, and keep momentum with a dashboard that stays focused.</p>
+        <div class="hero__stats">
+            <div class="stat-card">
+                <p class="stat-label">Total Balance</p>
+                <p class="stat-value" id="totalBalance">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">Accounts</p>
+                <p class="stat-value" id="totalAccounts">0</p>
+            </div>
+        </div>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-header">
+            <div>
+                <h2>New Account</h2>
+                <p class="muted">Start with a name, type, and opening balance.</p>
+            </div>
+        </div>
+        <form class="account-form" asp-action="CreateAccount" method="post">
+            <div class="form-grid">
+                <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="Name" placeholder="e.g. Daily Cash" value="@Model.NewAccount.Name"
+                        required />
+                </label>
+                <label class="field">
+                    <span>Type</span>
+                    <select name="AccountType">
+                        @if (Model.NewAccount.AccountType == BudgetTracker.Core.Domain.AccountType.Checking)
+                        {
+                            <option value="Checking" selected>Checking</option>
+                        }
+                        else
+                        {
+                            <option value="Checking">Checking</option>
+                        }
+                        @if (Model.NewAccount.AccountType == BudgetTracker.Core.Domain.AccountType.Savings)
+                        {
+                            <option value="Savings" selected>Savings</option>
+                        }
+                        else
+                        {
+                            <option value="Savings">Savings</option>
+                        }
+                        @if (Model.NewAccount.AccountType == BudgetTracker.Core.Domain.AccountType.Cash)
+                        {
+                            <option value="Cash" selected>Cash</option>
+                        }
+                        else
+                        {
+                            <option value="Cash">Cash</option>
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Initial Balance</span>
+                    <input type="number" name="InitialBalance" step="0.01" min="0"
+                        value="@Model.NewAccount.InitialBalance" />
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <p class="form-error">@Model.ErrorMessage</p>
+            }
+            <button class="btn-primary" type="submit">Add Account</button>
+        </form>
+    </div>
+</section>
+
+<section class="dashboard">
+    <div class="dashboard__header">
+        <div>
+            <h2>Accounts Overview</h2>
+            <p class="muted">Search, sort, and keep the important balances in view.</p>
+        </div>
+        <div class="controls">
+            <label class="field field--inline">
+                <span>Search</span>
+                <input type="search" id="accountSearch" placeholder="Filter by name or type" />
+            </label>
+            <label class="field field--inline">
+                <span>Sort</span>
+                <select id="accountSort">
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                    <option value="balance-desc">Balance (High)</option>
+                    <option value="balance-asc">Balance (Low)</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <table class="accounts-table" id="accountsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th class="numeric">Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model.Accounts)
+                {
+                    <tr data-name="@a.Name" data-type="@a.AccountType"
+                        data-balance="@a.CurrentBalance.ToString(System.Globalization.CultureInfo.InvariantCulture)">
+                        <td>@a.Name</td>
+                        <td>
+                            <span class="tag">@a.AccountType</span>
+                        </td>
+                        <td class="numeric">@a.CurrentBalance.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="empty-state" id="emptyState">
+            <h3>No matching accounts</h3>
+            <p>Adjust the search or add a new account to get started.</p>
+        </div>
+    </div>
+</section>
+
+<section class="advisor">
+    <div class="advisor__card">
+        <div>
+            <h2>Gemini Saving Advice</h2>
+            <p class="muted">Ask for tailored ideas to improve your savings strategy.</p>
+        </div>
+        <form class="advisor__form" asp-action="AskGemini" method="post">
+            <label class="field">
+                <span>Your Question</span>
+                <textarea name="prompt" rows="3" placeholder="e.g. How can I save $500 in the next 3 months?">@Model.AdvicePrompt</textarea>
+            </label>
+            @if (!string.IsNullOrWhiteSpace(Model.AdviceError))
+            {
+                <p class="form-error">@Model.AdviceError</p>
+            }
+            <button class="btn-primary" type="submit">Ask Gemini</button>
+        </form>
+        @if (!string.IsNullOrWhiteSpace(Model.AdviceResponse))
+        {
+            <div class="advisor__response">
+                <h3>Advice</h3>
+                <p>@Model.AdviceResponse</p>
+            </div>
+        }
+    </div>
+</section>
