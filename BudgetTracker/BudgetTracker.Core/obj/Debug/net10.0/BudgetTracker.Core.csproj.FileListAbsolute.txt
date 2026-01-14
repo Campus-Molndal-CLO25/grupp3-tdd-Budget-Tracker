@@ -1,0 +1,12 @@
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.csproj.AssemblyReference.cache
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.AssemblyInfoInputs.cache
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.AssemblyInfo.cs
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.csproj.CoreCompileInputs.cache
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/bin/Debug/net10.0/BudgetTracker.Core.deps.json
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/bin/Debug/net10.0/BudgetTracker.Core.dll
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/bin/Debug/net10.0/BudgetTracker.Core.pdb
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.dll
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/refint/BudgetTracker.Core.dll
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.pdb
+/Users/stephenucheosedumme/Tdd_Budget_Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/ref/BudgetTracker.Core.dll
