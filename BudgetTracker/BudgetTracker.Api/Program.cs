@@ -29,13 +29,7 @@ builder.Services.AddScoped<IDashboardService, DashboardService>(); // Register d
 
 builder.Services.AddHttpClient<IGeminiClient, GeminiClient>(http => // Register Gemini HttpClient.
 { // Open the client configuration block.
-    var baseUrl = builder.Configuration["Gemini:BaseUrl"]; // Read base URL from config.
-    var envBaseUrl = Environment.GetEnvironmentVariable("GEMINI_BASE_URL"); // Read base URL from env.
-    http.BaseAddress = new Uri(string.IsNullOrWhiteSpace(envBaseUrl) ? baseUrl! : envBaseUrl); // Set base address.
-
-    var apiKey = builder.Configuration["Gemini:ApiKey"]; // Read API key from config.
-    if (!string.IsNullOrWhiteSpace(apiKey)) // Check if API key exists.
-        http.DefaultRequestHeaders.Add("X-Api-Key", apiKey); // Add API key header.
+    http.BaseAddress = new Uri("https://api.1min.ai"); // Set base address.
 }); // Close the client configuration block.
 
 var app = builder.Build(); // Build the application.

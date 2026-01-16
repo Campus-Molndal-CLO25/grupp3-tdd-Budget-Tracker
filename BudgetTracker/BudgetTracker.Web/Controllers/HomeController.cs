@@ -66,13 +66,13 @@ public class HomeController : Controller // Define home controller.
                 AdviceError = ex.Message // Map error.
             }); // Close initializer block.
         } // Close catch block.
-        catch (HttpRequestException) // Handle network errors.
+        catch (HttpRequestException ex) // Handle network errors.
         { // Open catch block.
             return View("Index", new HomeDashboardViewModel // Return view with error.
             { // Open initializer block.
                 Accounts = accounts, // Map accounts.
                 AdvicePrompt = prompt, // Map prompt.
-                AdviceError = "Gemini is unreachable. Set GEMINI_BASE_URL or update Gemini:BaseUrl." // Map error.
+                AdviceError = ex.Message // Map error.
             }); // Close initializer block.
         } // Close catch block.
     } // Close the method block.
