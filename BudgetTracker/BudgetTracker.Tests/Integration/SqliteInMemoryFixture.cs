@@ -44,10 +44,6 @@ public sealed class SqliteInMemoryFixture : IAsyncLifetime
                 services.RemoveAll<DbContextOptions<BudgetTrackerDbContext>>();
                 services.AddDbContext<BudgetTrackerDbContext>(options => options.UseSqlite(_connection));
 
-                var sp = services.BuildServiceProvider();
-                using var scope = sp.CreateScope();
-                var db = scope.ServiceProvider.GetRequiredService<BudgetTrackerDbContext>();
-                db.Database.EnsureCreated();
             });
         }
     }
