@@ -6,6 +6,7 @@ public interface IBudgetService // Define budget service contract.
 { // Open the interface block.
     Task<BudgetDto> CreateAsync(CreateBudgetDto dto); // Create a budget.
     Task<List<BudgetDto>> GetByMonthAsync(DateTime month); // Fetch budgets by month.
+    Task<BudgetDto?> GetByIdAsync(int id); // Fetch budget by id.
     Task<BudgetDto?> UpdateAsync(int id, UpdateBudgetDto dto); // Update a budget.
     Task<bool> DeleteAsync(int id); // Delete a budget.
 } // Close the interface block.

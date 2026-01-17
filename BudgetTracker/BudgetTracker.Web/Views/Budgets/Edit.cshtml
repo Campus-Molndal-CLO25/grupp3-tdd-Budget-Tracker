@@ -1,0 +1,53 @@
+@model BudgetTracker.Web.Models.BudgetEditViewModel
+
+<section class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">Edit Budget</p>
+        <h1>Refine the target.</h1>
+        <p class="lede">Adjust category, month, or amount.</p>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-header">
+            <div>
+                <h2>Update Budget</h2>
+                <p class="muted">This updates the monthly plan instantly.</p>
+            </div>
+        </div>
+        <form class="account-form" asp-action="Edit" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="returnMonth" value="@Model.ReturnMonth" />
+            <div class="form-grid">
+                <label class="field">
+                    <span>Month</span>
+                    <input type="month" name="Month" value="@Model.Budget.Month.ToString("yyyy-MM")" required />
+                </label>
+                <label class="field">
+                    <span>Category</span>
+                    <select name="CategoryId" required>
+                        @foreach (var category in Model.Categories)
+                        {
+                            if (category.Id == Model.Budget.CategoryId)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Amount</span>
+                    <input type="number" name="Amount" step="0.01" min="0.01" value="@Model.Budget.Amount" required />
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <p class="form-error">@Model.ErrorMessage</p>
+            }
+            <button class="btn-primary" type="submit">Save Changes</button>
+            <a class="btn-link" asp-action="Index" asp-route-month="@Model.ReturnMonth">Cancel</a>
+        </form>
+    </div>
+</section>

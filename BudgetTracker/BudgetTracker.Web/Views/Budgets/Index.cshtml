@@ -1,0 +1,93 @@
+@model BudgetTracker.Web.Models.BudgetsIndexViewModel
+
+<section class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">Budgets</p>
+        <h1>Plan monthly spending.</h1>
+        <p class="lede">Assign targets per category and monitor progress.</p>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-header">
+            <div>
+                <h2>New Budget</h2>
+                <p class="muted">Set an amount for a category and month.</p>
+            </div>
+        </div>
+        <form class="account-form" asp-action="Create" method="post">
+            <div class="form-grid">
+                <label class="field">
+                    <span>Month</span>
+                    <input type="month" name="Month" value="@Model.NewBudget.Month.ToString("yyyy-MM")" required />
+                </label>
+                <label class="field">
+                    <span>Category</span>
+                    <select name="CategoryId" required>
+                        <option value="">Select category</option>
+                        @foreach (var category in Model.Categories)
+                        {
+                            if (category.Id == Model.NewBudget.CategoryId)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Amount</span>
+                    <input type="number" name="Amount" step="0.01" min="0.01" value="@Model.NewBudget.Amount" required />
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <p class="form-error">@Model.ErrorMessage</p>
+            }
+            <button class="btn-primary" type="submit">Add Budget</button>
+        </form>
+    </div>
+</section>
+
+<section class="dashboard">
+    <div class="dashboard__header">
+        <div>
+            <h2>Budgets for @Model.SelectedMonth.ToString("MMMM yyyy")</h2>
+            <p class="muted">View or adjust month targets.</p>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Month</th>
+                    <th class="numeric">Amount</th>
+                    <th class="numeric">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var budget in Model.Budgets)
+                {
+                    <tr>
+                        <td>@budget.CategoryName</td>
+                        <td>@budget.Month.ToString("yyyy-MM")</td>
+                        <td class="numeric">@budget.Amount.ToString("C")</td>
+                        <td class="numeric">
+                            <span class="action-links">
+                                <a class="btn-link" asp-action="Edit" asp-route-id="@budget.Id" asp-route-month="@Model.SelectedMonth.ToString("yyyy-MM")">Edit</a>
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@budget.Id" />
+                                    <input type="hidden" name="month" value="@Model.SelectedMonth.ToString("yyyy-MM")" />
+                                    <button type="submit" class="btn-link">Delete</button>
+                                </form>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
