@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hamed\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj": {}
+    "C:\\Users\\AHMOH\\source\\repos\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hamed\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj": {
+    "C:\\Users\\AHMOH\\source\\repos\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hamed\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj",
+        "projectUniqueName": "C:\\Users\\AHMOH\\source\\repos\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj",
         "projectName": "BudgetTracker.Core",
-        "projectPath": "C:\\Users\\hamed\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj",
-        "packagesPath": "C:\\Users\\hamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hamed\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\obj\\",
+        "projectPath": "C:\\Users\\AHMOH\\source\\repos\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\BudgetTracker.Core.csproj",
+        "packagesPath": "C:\\Users\\AHMOH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AHMOH\\source\\repos\\grupp3-tdd-Budget-Tracker\\BudgetTracker\\BudgetTracker.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AHMOH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
