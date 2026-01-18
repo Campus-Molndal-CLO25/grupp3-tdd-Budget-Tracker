@@ -23,3 +23,16 @@
 /Users/stephenucheosedumme/grupp3-tdd-Budget-Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/refint/BudgetTracker.Core.dll
 /Users/stephenucheosedumme/grupp3-tdd-Budget-Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/BudgetTracker.Core.pdb
 /Users/stephenucheosedumme/grupp3-tdd-Budget-Tracker/BudgetTracker/BudgetTracker.Core/obj/Debug/net10.0/ref/BudgetTracker.Core.dll
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\bin\Debug\net10.0\BudgetTracker.Core.deps.json
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\bin\Debug\net10.0\BudgetTracker.Core.dll
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\bin\Debug\net10.0\BudgetTracker.Core.pdb
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.csproj.AssemblyReference.cache
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.AssemblyInfoInputs.cache
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.AssemblyInfo.cs
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.csproj.CoreCompileInputs.cache
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.sourcelink.json
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.dll
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\refint\BudgetTracker.Core.dll
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\BudgetTracker.Core.pdb
+C:\Users\AHMOH\source\repos\grupp3-tdd-Budget-Tracker\BudgetTracker\BudgetTracker.Core\obj\Debug\net10.0\ref\BudgetTracker.Core.dll
