@@ -25,8 +25,15 @@ A personal budgeting application with a clean Core library, API endpoints, and a
 Set 1minAI configuration via environment variables (optional):
 
 ```bash
+Linux
 export ONEMINAI_API_KEY="your-key"
 export ONEMINAI_MODEL="gpt-4o-mini"
+
+Window 
+$env:ONEMINAI_API_KEY="din-nyckel-här"
+$env:ONEMINAI_MODEL="gpt-4o-mini"
+
+
 ```
 
 `appsettings.json` contains the default SQLite connection string.
