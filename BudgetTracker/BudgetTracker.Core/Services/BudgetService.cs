@@ -49,6 +49,12 @@ public class BudgetService : IBudgetService // Implement budget service.
         return budgets.Select(MapBudget).ToList(); // Map to DTOs.
     } // Close the method block.
 
+    public async Task<BudgetDto?> GetByIdAsync(int id) // Fetch budget by id.
+    { // Open the method block.
+        var budget = await _budgets.GetByIdAsync(id); // Fetch budget.
+        return budget is null ? null : MapBudget(budget); // Map or return null.
+    } // Close the method block.
+
     public async Task<BudgetDto?> UpdateAsync(int id, UpdateBudgetDto dto) // Update a budget.
     { // Open the method block.
         if (dto.Amount <= 0) // Validate amount.

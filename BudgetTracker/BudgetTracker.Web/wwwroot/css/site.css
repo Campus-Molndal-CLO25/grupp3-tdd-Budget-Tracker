@@ -3,7 +3,7 @@
 :root {
   --ink: #1e1b18;
   --muted-ink: #5a5551;
-  --canvas: #f7f3ee;
+  --canvas: #cfe8ff;
   --card: #ffffff;
   --accent: #e06b3c;
   --accent-dark: #b84e27;
@@ -27,9 +27,9 @@ body {
   font-family: "Trebuchet MS", "Verdana", "Segoe UI", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 10% 10%, rgba(224, 107, 60, 0.15), transparent 45%),
-    radial-gradient(circle at 90% 15%, rgba(59, 122, 108, 0.18), transparent 35%),
-    linear-gradient(160deg, var(--canvas) 0%, #fefcf9 60%);
+    radial-gradient(circle at 12% 12%, rgba(74, 144, 226, 0.18), transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(82, 196, 255, 0.2), transparent 35%),
+    linear-gradient(160deg, var(--canvas) 0%, #f6fbff 60%);
 }
 
 a {
@@ -335,6 +335,56 @@ a {
   display: block;
 }
 
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-ink);
+  padding: 14px 6px;
+  border-bottom: 1px solid #efe6db;
+}
+
+.data-table td {
+  padding: 16px 6px;
+  border-bottom: 1px solid #f1ebe4;
+  vertical-align: top;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.action-links {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.btn-link {
+  border: none;
+  background: none;
+  padding: 0;
+  font-weight: 600;
+  color: var(--accent-dark);
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.filter-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .footer {
   margin-top: 36px;
   display: flex;
@@ -366,6 +416,56 @@ a {
 
 .advisor__response h3 {
   margin: 0 0 8px;
+}
+
+.api__card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+}
+
+.api__grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.api__group h3 {
+  margin: 0 0 10px;
+}
+
+.api__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.api__list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.api__method {
+  font-weight: 700;
+  color: var(--teal);
+  min-width: 56px;
+  letter-spacing: 0.03em;
+}
+
+.api__list code {
+  font-family: "Courier New", monospace;
+  background: #eef6ff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #2b4b66;
+  border: 1px solid rgba(43, 75, 102, 0.18);
 }
 
 @media (max-width: 768px) {

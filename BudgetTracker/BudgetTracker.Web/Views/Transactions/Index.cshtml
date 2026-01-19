@@ -1,0 +1,140 @@
+@model BudgetTracker.Web.Models.TransactionsIndexViewModel
+
+<section class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">Transactions</p>
+        <h1>Capture every movement.</h1>
+        <p class="lede">Log income and expenses to keep balances accurate.</p>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-header">
+            <div>
+                <h2>New Transaction</h2>
+                <p class="muted">Pick an account, category, and amount.</p>
+            </div>
+        </div>
+        <form class="account-form" asp-action="Create" method="post">
+            <div class="form-grid">
+                <label class="field">
+                    <span>Account</span>
+                    <select name="AccountId" required>
+                        <option value="">Select account</option>
+                        @foreach (var account in Model.Accounts)
+                        {
+                            if (account.Id == Model.NewTransaction.AccountId)
+                            {
+                                <option value="@account.Id" selected>@account.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@account.Id">@account.Name</option>
+                            }
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Category</span>
+                    <select name="CategoryId" required>
+                        <option value="">Select category</option>
+                        @foreach (var category in Model.Categories)
+                        {
+                            if (category.Id == Model.NewTransaction.CategoryId)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Type</span>
+                    <select name="Type">
+                        @if (Model.NewTransaction.Type == BudgetTracker.Core.Domain.TransactionType.Income)
+                        {
+                            <option value="Income" selected>Income</option>
+                        }
+                        else
+                        {
+                            <option value="Income">Income</option>
+                        }
+                        @if (Model.NewTransaction.Type == BudgetTracker.Core.Domain.TransactionType.Expense)
+                        {
+                            <option value="Expense" selected>Expense</option>
+                        }
+                        else
+                        {
+                            <option value="Expense">Expense</option>
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Amount</span>
+                    <input type="number" name="Amount" step="0.01" min="0.01" value="@Model.NewTransaction.Amount" required />
+                </label>
+                <label class="field">
+                    <span>Date</span>
+                    <input type="date" name="Date" value="@Model.NewTransaction.Date.ToString("yyyy-MM-dd")" required />
+                </label>
+                <label class="field">
+                    <span>Description</span>
+                    <input type="text" name="Description" value="@Model.NewTransaction.Description" placeholder="Optional" />
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <p class="form-error">@Model.ErrorMessage</p>
+            }
+            <button class="btn-primary" type="submit">Add Transaction</button>
+        </form>
+    </div>
+</section>
+
+<section class="dashboard">
+    <div class="dashboard__header">
+        <div>
+            <h2>Recent Transactions</h2>
+            <p class="muted">Showing the latest 100 entries.</p>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Account</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th class="numeric">Amount</th>
+                    <th>Description</th>
+                    <th class="numeric">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in Model.Transactions)
+                {
+                    <tr>
+                        <td>@transaction.Date.ToString("yyyy-MM-dd")</td>
+                        <td>@transaction.AccountName</td>
+                        <td>@transaction.CategoryName</td>
+                        <td><span class="tag">@transaction.Type</span></td>
+                        <td class="numeric">@transaction.Amount.ToString("C")</td>
+                        <td>@transaction.Description</td>
+                        <td class="numeric">
+                            <span class="action-links">
+                                <a class="btn-link" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@transaction.Id" />
+                                    <button type="submit" class="btn-link">Delete</button>
+                                </form>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

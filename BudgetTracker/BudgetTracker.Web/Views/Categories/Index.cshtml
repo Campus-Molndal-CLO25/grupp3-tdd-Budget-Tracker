@@ -1,0 +1,96 @@
+@model BudgetTracker.Web.Models.CategoriesIndexViewModel
+
+<section class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">Categories</p>
+        <h1>Organize spending with clear labels.</h1>
+        <p class="lede">Create, edit, or remove categories that power transactions and budgets.</p>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-header">
+            <div>
+                <h2>New Category</h2>
+                <p class="muted">Add a label and optional color.</p>
+            </div>
+        </div>
+        <form class="account-form" asp-action="Create" method="post">
+            <div class="form-grid">
+                <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="Name" value="@Model.NewCategory.Name" required />
+                </label>
+                <label class="field">
+                    <span>Type</span>
+                    <select name="Type">
+                        @if (Model.NewCategory.Type == BudgetTracker.Core.Domain.CategoryType.Income)
+                        {
+                            <option value="Income" selected>Income</option>
+                        }
+                        else
+                        {
+                            <option value="Income">Income</option>
+                        }
+                        @if (Model.NewCategory.Type == BudgetTracker.Core.Domain.CategoryType.Expense)
+                        {
+                            <option value="Expense" selected>Expense</option>
+                        }
+                        else
+                        {
+                            <option value="Expense">Expense</option>
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Color</span>
+                    <input type="text" name="Color" value="@Model.NewCategory.Color" placeholder="#2f855a" />
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <p class="form-error">@Model.ErrorMessage</p>
+            }
+            <button class="btn-primary" type="submit">Add Category</button>
+        </form>
+    </div>
+</section>
+
+<section class="dashboard">
+    <div class="dashboard__header">
+        <div>
+            <h2>Category List</h2>
+            <p class="muted">Manage available income and expense groupings.</p>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Color</th>
+                    <th class="numeric">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td><span class="tag">@category.Type</span></td>
+                        <td>@category.Color</td>
+                        <td class="numeric">
+                            <span class="action-links">
+                                <a class="btn-link" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@category.Id" />
+                                    <button type="submit" class="btn-link">Delete</button>
+                                </form>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

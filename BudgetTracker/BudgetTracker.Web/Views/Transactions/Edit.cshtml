@@ -1,0 +1,93 @@
+@model BudgetTracker.Web.Models.TransactionEditViewModel
+
+<section class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">Edit Transaction</p>
+        <h1>Adjust the details.</h1>
+        <p class="lede">Update the account, category, or amount.</p>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-header">
+            <div>
+                <h2>Update Transaction</h2>
+                <p class="muted">Changes recalculate balances immediately.</p>
+            </div>
+        </div>
+        <form class="account-form" asp-action="Edit" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div class="form-grid">
+                <label class="field">
+                    <span>Account</span>
+                    <select name="AccountId" required>
+                        @foreach (var account in Model.Accounts)
+                        {
+                            if (account.Id == Model.Transaction.AccountId)
+                            {
+                                <option value="@account.Id" selected>@account.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@account.Id">@account.Name</option>
+                            }
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Category</span>
+                    <select name="CategoryId" required>
+                        @foreach (var category in Model.Categories)
+                        {
+                            if (category.Id == Model.Transaction.CategoryId)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Type</span>
+                    <select name="Type">
+                        @if (Model.Transaction.Type == BudgetTracker.Core.Domain.TransactionType.Income)
+                        {
+                            <option value="Income" selected>Income</option>
+                        }
+                        else
+                        {
+                            <option value="Income">Income</option>
+                        }
+                        @if (Model.Transaction.Type == BudgetTracker.Core.Domain.TransactionType.Expense)
+                        {
+                            <option value="Expense" selected>Expense</option>
+                        }
+                        else
+                        {
+                            <option value="Expense">Expense</option>
+                        }
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Amount</span>
+                    <input type="number" name="Amount" step="0.01" min="0.01" value="@Model.Transaction.Amount" required />
+                </label>
+                <label class="field">
+                    <span>Date</span>
+                    <input type="date" name="Date" value="@Model.Transaction.Date.ToString("yyyy-MM-dd")" required />
+                </label>
+                <label class="field">
+                    <span>Description</span>
+                    <input type="text" name="Description" value="@Model.Transaction.Description" />
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <p class="form-error">@Model.ErrorMessage</p>
+            }
+            <button class="btn-primary" type="submit">Save Changes</button>
+            <a class="btn-link" asp-action="Index">Cancel</a>
+        </form>
+    </div>
+</section>
