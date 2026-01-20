@@ -2,8 +2,9 @@
 # grupp3-tdd-Budget-Tracker
 
 [![](https://img.shields.io/badge/grupp3-tdd_Budget_Tracker-blue?style=for-the-badge)]()
-[![.NET Build & Test](https://github.com/Campus-Molndal-CLO25/grupp3-tdd-Budget-Tracker/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/Campus-Molndal-CLO25/grupp3-tdd-Budget-Tracker/actions/workflows/dotnet-desktop.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+[![.NET Build & Test](https://github.com/Campus-Molndal-CLO25/grupp3-tdd-Budget-Tracker/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/Campus-Molndal-CLO25/grupp3-tdd-Budget-Tracker/actions/workflows/dotnet-desktop.yml)
 
 # BudgetTracker
 
